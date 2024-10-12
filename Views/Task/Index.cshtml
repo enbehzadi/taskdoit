@@ -1,0 +1,38 @@
+﻿@model IEnumerable<NewToDoListApp.Models.ToDoTask>
+
+<h1>Task List</h1>
+
+<form asp-action="Create" method="post">
+    <div>
+        <label for="Title">Task Title:</label>
+        <input type="text" id="Title" name="Title" required />
+    </div>
+    <div>
+        <button type="submit">Add Task</button>
+    </div>
+</form>
+
+<table border="1">
+    <thead>
+        <tr>
+            <th>ID</th>
+            <th>Title</th>
+            <th>Is Completed</th>
+            <th>Actions</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var task in Model)
+        {
+            <tr>
+                <td>@task.Id</td>
+                <td>@task.Title</td>
+                <td>@task.IsCompleted</td>
+                <td>
+                    <a asp-action="Edit" asp-route-id="@task.Id">Edit</a> |
+                    <a asp-action="Delete" asp-route-id="@task.Id">Delete</a>
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>
